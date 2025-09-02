@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MoviWeb App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h1><a href="{{ url_for('home') }}">🎬 MoviWeb App</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('list_users') }}">👥 Users</a></li>
+                <li><a href="{{ url_for('home') }}">🏠 Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages">
+                        {% for category, message in messages %}
+                            <div class="flash-message flash-{{ category | default('info') }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 MoviWeb App - Your Personal Movie Collection Manager</p>
+    </footer>
+</body>
+</html>

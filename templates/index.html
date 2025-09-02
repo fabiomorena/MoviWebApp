@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Users - MoviWeb App{% endblock %}
+
+{% block content %}
+    <h1>👥 Users</h1>
+
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    <a href="{{ url_for('get_user_movies', user_id=user.id) }}">
+                        🎬 {{ user.username }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="flash-message flash-info">
+            <p>📭 No users found. Be the first to create an account!</p>
+        </div>
+    {% endif %}
+
+    <h2>➕ Add New User</h2>
+    <form method="POST" action="{{ url_for('create_user') }}">
+        <div>
+            <label for="name">👤 Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div>
+            <label for="email">📧 Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div>
+            <label for="password">🔒 Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required minlength="6">
+        </div>
+        <button type="submit">➕ Create User</button>
+    </form>
+{% endblock %}

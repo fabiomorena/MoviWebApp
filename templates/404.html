@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - MoviWeb App{% endblock %}
+
+{% block content %}
+    <div class="error-container">
+        <h1>404 - Page Not Found 🚫</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <p>This could be because:</p>
+        <ul>
+            <li>📁 The page has been moved or deleted</li>
+            <li>⌨️ You typed the URL incorrectly</li>
+            <li>🔒 You don't have permission to access this page</li>
+        </ul>
+        <a href="{{ url_for('home') }}" class="btn">🏠 Go Back Home</a>
+    </div>
+{% endblock %}
